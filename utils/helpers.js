@@ -17,7 +17,7 @@ export function getQueryString(query) {
 
 export function searchPokemon(keyword, pokemonList) {
   if (!keyword.trim()) return pokemonList
-  const brokenDownKeyword = keyword.trim().split(" ");
+  const brokenDownKeyword = keyword.trim().toLowerCase().split(" ");
   const searchPieceInName = (name) => brokenDownKeyword.map(piece => name.includes(piece)).every(Boolean);
   return pokemonList.filter((pokemon) => searchPieceInName(pokemon.name));
 }

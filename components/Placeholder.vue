@@ -4,7 +4,7 @@
 
 <template>
   <div class="flex  py-20 flex-col items-center w-full">
-    <img src="~/assets/images/pika-magnify.webp" alt="" class="w-72">
+    <img src="~/assets/images/pika-magnify.webp" alt="" class="w-72 max-w-[60%]">
 
     <slot></slot>
   </div>

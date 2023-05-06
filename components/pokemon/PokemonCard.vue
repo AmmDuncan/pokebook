@@ -4,10 +4,19 @@ import { PokemonModel } from "~/models/Pokemon";
 defineProps<{
   pokemon: PokemonModel["details"]
 }>();
+
+const focused = ref(false);
+
+const setFocus = (val: boolean) => focused.value = val;
 </script>
 
 <template>
-  <div class="pokemon-card relative rounded-[20px] p-2.5 pb-7 bg-white">
+  <div
+    :class="{focused}"
+    class="pokemon-card relative rounded-[20px] p-2.5 pb-7 bg-white"
+    @click.self="setFocus(true)"
+    @mouseover="setFocus(true)"
+    @mouseout="setFocus(false)">
     <div class="image relative rounded-[15px] w-full pt-[55%] bg-neutral-100">
       <img
         :alt="`${pokemon.name} image`"
@@ -39,18 +48,36 @@ defineProps<{
 
 <style lang="scss" scoped>
 .cta {
-  max-height: 0;
-  transition: max-height 50ms ease;
+  transition: all 100ms ease;
+  transform: scaleY(0);
+  opacity: 0;
+  transform-origin: 0 0;
+
+  // I prefer the max-height animation
+  // but it's buggy on safari mobile
+  // and less performance than the transitions
+  @media (min-width: 768px) {
+    max-height: 0;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .pokemon-card {
- filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.06));
+  filter: drop-shadow(0px 4px 40px rgba(0, 0, 0, 0.06));
 
-  &:hover {
+  &.focused {
     z-index: 10;
+
     .cta {
-      max-height: 300px;
-      transition: max-height 300ms 50ms ease-in;
+      transition: all 300ms ease;
+      opacity: 1;
+      transform: scaleY(1);
+
+      @media (min-width: 768px) {
+        transition: all 300ms ease-in;
+        max-height: 300px;
+      }
     }
   }
 }

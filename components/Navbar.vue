@@ -19,8 +19,8 @@ watchDebounced(searchValue, () => {
 <template>
   <div class="navbar relative flex justify-between items-center bg-white px-6">
     <NuxtLink to="/" class="logo flex items-center h-20 space-x-2">
-      <img alt="" class="w-28  md:w-32 -mb-6" src="~/assets/images/logo-illustration.png">
-      <Text as-heading class="-mb-2" variant="h2">Poké
+      <img alt="" class="w-24 sm:w-28  md:w-32 -mb-6" src="~/assets/images/logo-illustration.png">
+      <Text as-heading class="-mb-2 text-xl sm:text-2xl" variant="h2">Poké
         <Highlight>book</Highlight>
       </Text>
     </NuxtLink>
@@ -76,6 +76,7 @@ watchDebounced(searchValue, () => {
   }
 
   input {
+    width: 100%;
     flex: 1 1 auto;
     outline: none;
     background: transparent;

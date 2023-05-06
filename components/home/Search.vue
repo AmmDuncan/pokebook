@@ -33,7 +33,7 @@ const handleSearch = () => {
       <div class="search__inner rounded-full p-2 bg-white shadow-md">
         <input
           v-model="search"
-          class="rounded-full ml-1 p-2 text-2xl text-gray-500"
+          class="rounded-full ml-1 p-2 text-xl md:text-2xl text-gray-500"
           type="search"
           v-bind="inputProps"
           @keydown.enter="handleSearch">
@@ -55,6 +55,7 @@ const handleSearch = () => {
   }
 
   input {
+    width: 100%;
     flex: 1 1 auto;
     outline: none;
     background: transparent;

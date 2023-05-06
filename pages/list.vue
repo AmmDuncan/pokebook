@@ -40,7 +40,7 @@ watch([() => query.search, () => query.page_size], () => {
         <Text as-heading variant="h2">I'm sorryyy!!
           <Highlight>!</Highlight>
         </Text>
-        <Text>I couldn't find any Pokémon <span v-if="query.search">matching
+        <Text class="text-center max-w-[24ch]">I couldn't find any Pokémon <span v-if="query.search">matching
           <Highlight>"{{ query.search }}"</Highlight></span>
           <span v-else-if="query.page">on <Highlight>page {{ query.page }}</Highlight></span>
         </Text>
@@ -70,7 +70,7 @@ watch([() => query.search, () => query.page_size], () => {
 <style scoped>
 .root {
     min-height: 100vh;
-    min-height: 100svh;
+    min-height: 100lvh;
     background: #f6f6f6;
 }
 
