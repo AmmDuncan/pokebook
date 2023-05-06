@@ -2,20 +2,33 @@
 import { usePokemonPage } from "~/composables/usePokemonPage";
 import { PokemonModel } from "~/models/Pokemon";
 import Placeholder from "~/components/Placeholder.vue";
+import { asNumber } from "~/utils/helpers";
 
 const route = useRoute();
-const initialQuery = { page: 1, page_size: 8, search: route.query.search ?? "" };
+const initialQuery = {
+  page: asNumber(route.query.page) ?? 1,
+  page_size: asNumber(route.query.page_size) ?? 8,
+  search: route.query.search ?? ""
+};
 const { data, isLoading, query, count } = usePokemonPage({ initialQuery });
 
 const pokemonList = computed(() => data.value ?? []);
 
-watch(() => query.search, (val) => {
-  navigateTo({ ...route, query: { ...route.query, search: val }, replace: true });
+watch(query, () => {
+  navigateTo({
+    ...route,
+    query: {
+      ...route.query,
+      search: query.search,
+      page: query.page,
+      page_size: query.page_size
+    }, replace: true
+  });
 });
 
 watch([() => query.search, () => query.page_size], () => {
   query.page = 1;
-})
+});
 
 </script>
 
@@ -23,12 +36,17 @@ watch([() => query.search, () => query.page_size], () => {
   <div class="root">
     <Navbar v-model:search="query.search" />
     <div class="bound">
-      <Placeholder v-if="!isLoading && !pokemonList.length && query.search">
-        <Text variant="h2" as-heading>I'm sorryyy!!<Highlight>!</Highlight></Text>
-        <Text>I couldn't find a Pokémon matching <Highlight>"{{query.search}}"</Highlight></Text>
+      <Placeholder v-if="!isLoading && !pokemonList.length">
+        <Text as-heading variant="h2">I'm sorryyy!!
+          <Highlight>!</Highlight>
+        </Text>
+        <Text>I couldn't find any Pokémon <span v-if="query.search">matching
+          <Highlight>"{{ query.search }}"</Highlight></span>
+          <span v-else-if="query.page">on <Highlight>page {{query.page}}</Highlight></span>
+        </Text>
       </Placeholder>
 
-      <Loader v-else-if="isLoading" class="h-[776px]" />
+      <Loader v-else-if="isLoading" class="h-[740px]" />
 
       <div v-else class="pokemon-container mt-24 lg:mt-62">
         <PokemonCard
@@ -38,14 +56,15 @@ watch([() => query.search, () => query.page_size], () => {
         />
       </div>
 
-      <Pagination
-        :key="query.page"
-        v-if="count"
-        v-model:page="query.page"
-        :page-size="query.page_size"
-        :total="count as number"
-        class="pb-28"
-      />
+      <ClientOnly>
+        <Pagination
+          v-if="count"
+          v-model:page="query.page"
+          :page-size="query.page_size"
+          :total="count as number"
+          class="pb-28"
+        />
+      </ClientOnly>
     </div>
   </div>
 </template>

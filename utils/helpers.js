@@ -31,3 +31,8 @@ export function getDeep(inputObj, path) {
   }
   return obj;
 }
+
+export function asNumber(value) {
+  const converted = Number(value)
+  return isNaN(converted) ? null : converted;
+}
