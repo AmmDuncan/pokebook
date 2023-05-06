@@ -9,7 +9,7 @@ export default defineNuxtConfig({
         {
           name: "description",
           content: "Largest Pokémon index with information about every Pokemon you can think of."
-        }
+        },
         // facebook meta tags
         { property: "og:url", content: "https://pokebook.ammielyawson.com" },
         { property: "og:type", content: "website" },
