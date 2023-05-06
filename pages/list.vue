@@ -42,11 +42,11 @@ watch([() => query.search, () => query.page_size], () => {
         </Text>
         <Text>I couldn't find any Pokémon <span v-if="query.search">matching
           <Highlight>"{{ query.search }}"</Highlight></span>
-          <span v-else-if="query.page">on <Highlight>page {{query.page}}</Highlight></span>
+          <span v-else-if="query.page">on <Highlight>page {{ query.page }}</Highlight></span>
         </Text>
       </Placeholder>
 
-      <Loader v-else-if="isLoading" class="h-[740px]" />
+      <Loader v-else-if="isLoading" class="h-[776px]" />
 
       <div v-else class="pokemon-container mt-24 lg:mt-62">
         <PokemonCard
@@ -56,15 +56,13 @@ watch([() => query.search, () => query.page_size], () => {
         />
       </div>
 
-      <ClientOnly>
-        <Pagination
-          v-if="count"
-          v-model:page="query.page"
-          :page-size="query.page_size"
-          :total="count as number"
-          class="pb-28"
-        />
-      </ClientOnly>
+      <Pagination
+        v-if="count"
+        v-model:page="query.page"
+        :page-size="query.page_size"
+        :total="count as number"
+        class="pb-28"
+      />
     </div>
   </div>
 </template>
