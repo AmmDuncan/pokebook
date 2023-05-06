@@ -18,6 +18,7 @@ const setFocus = (val: boolean) => focused.value = val;
   <div
     :class="{focused}"
     class="pokemon-card relative rounded-[20px] p-2.5 pb-7 bg-white"
+    @focusin="setFocus(true)"
     @focusout="setFocus(false)"
     @mouseout="setFocus(false)"
     @mouseover="setFocus(true)"
@@ -26,7 +27,7 @@ const setFocus = (val: boolean) => focused.value = val;
       <img
         :alt="`${pokemon.name} image`"
         :src="pokemon.image"
-        class="absolute w-[69%] h-[145%] object-contain left-2/4 -translate-x-1/2 -top-20 object-bottom"
+        class="absolute w-[69%] h-[145%] object-contain left-2/4 -translate-x-1/2 -top-20 object-bottom pointer-events-none"
       />
     </div>
 

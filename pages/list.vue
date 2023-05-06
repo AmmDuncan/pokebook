@@ -48,7 +48,7 @@ watch([() => query.search, () => query.page_size], () => {
         </Text>
       </Placeholder>
 
-      <Loader v-else-if="isLoading" class="h-[80vh]" />
+      <Loader v-else-if="isLoading" class="h-[80vh] max-h-[776px]" />
 
       <div v-else class="pokemon-container mt-24 lg:mt-62">
         <PokemonCard
@@ -59,13 +59,21 @@ watch([() => query.search, () => query.page_size], () => {
         />
       </div>
 
-      <Pagination
-        v-if="count"
-        v-model:page="query.page"
-        :page-size="query.page_size"
-        :total="count as number"
-        class="pb-28"
-      />
+      <div class="flex flex-wrap justify-between pb-28">
+        <Pagination
+          v-if="count"
+          v-model:page="query.page"
+          :page-size="query.page_size"
+          :total="count as number"
+        />
+
+        <select class="px-5 text-xl rounded-lg" v-model="query.page_size">
+          <option value="8">8</option>
+          <option value="12">12</option>
+          <option value="16">16</option>
+          <option value="24">24</option>
+        </select>
+      </div>
     </div>
 
     <Modal
