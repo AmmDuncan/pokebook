@@ -3,6 +3,7 @@ import { usePokemonPage } from "~/composables/usePokemonPage";
 import { PokemonModel } from "~/models/Pokemon";
 import Placeholder from "~/components/Placeholder.vue";
 import { asNumber } from "~/utils/helpers";
+import { usePokemonDetail } from "~/composables/usePokemonDetail";
 
 const route = useRoute();
 const initialQuery = {
@@ -11,6 +12,7 @@ const initialQuery = {
   search: route.query.search ?? ""
 };
 const { data, isLoading, query, count } = usePokemonPage({ initialQuery });
+const { pokemon, viewing, view, close } = usePokemonDetail();
 
 const pokemonList = computed(() => data.value ?? []);
 
@@ -35,7 +37,7 @@ watch([() => query.search, () => query.page_size], () => {
 <template>
   <div class="root">
     <Navbar v-model:search="query.search" />
-    <div class="bound">
+    <div class="bound -z-5">
       <Placeholder v-if="!isLoading && !pokemonList.length">
         <Text as-heading variant="h2">I'm sorryyy!!
           <Highlight>!</Highlight>
@@ -46,13 +48,14 @@ watch([() => query.search, () => query.page_size], () => {
         </Text>
       </Placeholder>
 
-      <Loader v-else-if="isLoading" class="h-[776px]" />
+      <Loader v-else-if="isLoading" class="h-[80vh]" />
 
       <div v-else class="pokemon-container mt-24 lg:mt-62">
         <PokemonCard
           v-for="pokemon in pokemonList as Array<PokemonModel['details']>"
           :key="pokemon.id"
           :pokemon="pokemon"
+          @view="view(pokemon)"
         />
       </div>
 
@@ -64,6 +67,16 @@ watch([() => query.search, () => query.page_size], () => {
         class="pb-28"
       />
     </div>
+
+    <Modal
+      :classes="{panel: 'w-[600px]'}"
+      :header-border="false"
+      :show="viewing"
+      header-hidden
+      variant="side"
+      @close="close">
+      <PokemonDetailView :pokemon="pokemon" @close="close" />
+    </Modal>
   </div>
 </template>
 

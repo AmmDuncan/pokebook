@@ -12,11 +12,15 @@ export default defineNuxtConfig({
 
   css: ['assets/fonts/ClashDisplay/stylesheet.css', 'assets/fonts/GeneralSans/stylesheet.css'],
 
-  modules: ['@nuxtjs/tailwindcss'],
+  modules: ['@nuxtjs/tailwindcss', 'nuxt-headlessui'],
 
   tailwind: {
     cssPath: '~/assets/styles/tailwind.css',
     configPath: 'tailwind.config.js'
   },
+
+  headlessui: {
+    prefix: 'Headless'
+  }
 
 })

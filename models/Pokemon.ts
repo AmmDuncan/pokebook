@@ -11,6 +11,7 @@ export class PokemonModel {
       types: this._remotePokemon.types,
       weight: this._remotePokemon.weight,
       stats: this._remotePokemon.stats,
+      height: this._remotePokemon.height,
     }
   }
 }

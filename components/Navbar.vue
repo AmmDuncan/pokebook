@@ -44,7 +44,7 @@ watchDebounced(searchValue, () => {
 
 <style lang="scss" scoped>
 .navbar {
-  z-index: 100;
+  z-index: 10;
   position: sticky;
   top: 0;
   box-shadow: 0 4px 12px hsla(0, 0%, 0%, 0.06);

@@ -17,6 +17,8 @@
     "@nuxtjs/tailwindcss": "^6.6.7",
     "@tanstack/vue-query": "^4.29.5",
     "@vueuse/core": "^10.1.2",
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "colorthief": "^2.4.0",
+    "nuxt-headlessui": "^1.1.4"
   }
 }
