@@ -21,6 +21,7 @@ export default defineNuxtConfig({
         // twitter
         { name: "twitter:card", content: "summary_large_image" },
         { property: "twitter:domain", content: "pokebook.ammielyawson.com" },
+        { property: "twitter:url", content: "https://pokebook.ammielyawson.com/" },
         { name: "twitter:title", content: "Pokemon Index" },
         {
           name: "twitter:description",
