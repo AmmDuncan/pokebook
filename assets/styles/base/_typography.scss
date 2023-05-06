@@ -1,0 +1,15 @@
+html {
+  --heading-family: 'Clash Display', sans-serif;
+  --text-family: 'General Sans', sans-serif;
+
+  // Color
+  --clr-pink: #E85382;
+  --clr-cyan: #39BADF;
+  --clr-beige: #E1A725;
+
+  --clr-primary: var(--clr-pink);
+}
+
+body {
+  font-family: var(--text-family);
+}
