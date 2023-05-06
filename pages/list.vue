@@ -62,12 +62,14 @@ watch([() => query.search, () => query.page_size], () => {
       <div class="flex flex-wrap justify-between pb-28">
         <Pagination
           v-if="count"
+          :key="query.page"
           v-model:page="query.page"
           :page-size="query.page_size"
           :total="count as number"
         />
 
-        <select class="px-5 text-xl rounded-lg" v-model="query.page_size">
+        <select :value="query.page_size" class="px-5 text-xl rounded-lg"
+                @change="query.page_size = Number($event.target.value)">
           <option value="8">8</option>
           <option value="12">12</option>
           <option value="16">16</option>
