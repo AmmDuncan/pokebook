@@ -48,15 +48,19 @@
                 :class="[classes?.title]"
                 class="p-3 text-lg font-semibold"
               >
-                {{ title }}
+                <slot name="title">
+                  {{ title }}
+                </slot>
               </HeadlessDialogTitle>
-              <button
-                :class="[classes?.closeButton]"
-                class="grid place-content-center w-8 h-8"
-                @click="emit('close')"
-              >
-                X
-              </button>
+              <slot name="close-button">
+                <button
+                  :class="[classes?.closeButton]"
+                  class="grid place-content-center w-8 h-8"
+                  @click="emit('close')"
+                >
+                  X
+                </button>
+              </slot>
             </div>
             <slot />
           </HeadlessDialogPanel>
@@ -135,20 +139,20 @@ const transitions = {
 
 <style lang="postcss" scoped>
 .title-bar {
-    @apply w-full p-5 py-2;
+    @apply w-full p-5 py-0;
     @apply flex justify-between items-center space-x-2;
     @apply bg-white;
 }
 
 .center {
     .title-bar {
-        @apply rounded-t-xl;
+        @apply rounded-t-3xl;
     }
 }
 
 .panel {
     &.center {
-        @apply rounded-xl;
+        @apply rounded-3xl;
     }
 
     &.side {

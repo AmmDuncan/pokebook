@@ -13,3 +13,11 @@ html {
 body {
   font-family: var(--text-family);
 }
+
+[data-theme="cyan"] {
+  --clr-primary: var(--clr-cyan);
+}
+
+[data-theme="beige"] {
+  --clr-primary: var(--clr-beige);
+}

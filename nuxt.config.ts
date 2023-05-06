@@ -10,6 +10,8 @@ export default defineNuxtConfig({
     }
   },
 
+  ssr: false,
+
   css: ['assets/fonts/ClashDisplay/stylesheet.css', 'assets/fonts/GeneralSans/stylesheet.css'],
 
   modules: ['@nuxtjs/tailwindcss', 'nuxt-headlessui'],

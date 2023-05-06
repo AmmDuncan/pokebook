@@ -1,3 +1,13 @@
+<script lang="ts" setup>
+import { usePokemonList } from "~/composables/usePokemonList";
+import ThemeSelect from "~/components/ThemeSelect.vue";
+import { useTheme } from "~/composables/useTheme";
+
+usePokemonList();
+const { isOpen, toggleOpen } = useTheme();
+
+</script>
+
 <template>
   <div>
     <NuxtLayout>
@@ -5,6 +15,14 @@
     </NuxtLayout>
   </div>
   <Noise />
+  <Modal :classes="{titleBar: '!flex !justify-center w-full', panel: 'w-[427px] max-w-[90vw]'}" :show="isOpen as Boolean"
+         overflow-hidden @close="toggleOpen">
+    <template #title>
+      <Text as-heading variant="h2" weight="semibold">Select Theme</Text>
+    </template>
+    <template #close-button><span></span></template>
+    <ThemeSelect />
+  </Modal>
 </template>
 
 
@@ -46,10 +64,3 @@ button {
   }
 }
 </style>
-
-
-<script lang="ts" setup>
-import { usePokemonList } from "~/composables/usePokemonList";
-
-usePokemonList();
-</script>
