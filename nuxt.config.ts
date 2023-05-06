@@ -14,6 +14,7 @@ export default defineNuxtConfig({
         { property: "og:url", content: "https://pokebook.ammielyawson.com" },
         { property: "og:type", content: "website" },
         { property: "og:title", content: "Pokemon Index" },
+        { property: "og:image", content: "https://pokebook.ammielyawson.com/logo-illustration.png" }
         {
           property: "og:description",
           content: "Largest Pokémon index with information about every Pokemon you can think of."
