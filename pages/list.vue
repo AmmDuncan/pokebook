@@ -59,9 +59,8 @@ watch([() => query.search, () => query.page_size], () => {
         />
       </div>
 
-      <div class="flex flex-wrap justify-between pb-28">
+      <div v-if="count" class="flex flex-wrap justify-between pb-28">
         <Pagination
-          v-if="count"
           :key="query.page"
           v-model:page="query.page"
           :page-size="query.page_size"
