@@ -1,11 +1,7 @@
-<script setup lang="ts">
-
-</script>
+<script lang="ts" setup></script>
 
 <template>
-<div class="noise">
-
-</div>
+  <div class="noise"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -14,7 +10,8 @@
   z-index: 9999;
   inset: 0;
   background-image: url("assets/images/noise.png");
-  opacity: 0.06;
+  opacity: 0.05;
   pointer-events: none;
+  background-size: 300px;
 }
 </style>
